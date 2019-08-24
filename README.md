@@ -3,6 +3,7 @@
 ## quick start
 
 ```bash
+pipenv shell
 python crimemap.py
 ```
 

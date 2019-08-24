@@ -1,7 +1,7 @@
 
 
 class MockDBHelper:
-    def connect(self, database="crimemap"):
+    def connect(self):
         pass
     
     def get_all_inputs(self):
