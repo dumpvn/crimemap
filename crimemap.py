@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-
+"""
+crimemap application.
+"""
+import json
 import dbconfig
 
 if dbconfig.test:
@@ -30,10 +33,16 @@ def submitcrime():
 @app.route("/")
 def home():
     try:
-        data = DB.get_all_inputs()
+        # data = DB.get_all_inputs()
+        crimes = DB.get_all_crimes()
+        crimes = json.dumps(crimes)
+        return render_template("home.html", crimes=crimes)
     except Exception as e:
-        data = None
-    return render_template("home.html", data=data)
+        # data = None
+        crimes=None
+
+    # return render_template("home.html", data=data)
+    return render_template("home.html", crimes=crimes)
 
 @app.route("/add", methods=["POST"])
 def add():

@@ -2,7 +2,6 @@
 
 import pymysql
 import dbconfig
-
 import datetime
 
 class DBHelper:
@@ -14,14 +13,14 @@ class DBHelper:
         return pymysql.connect(host=dbconfig.db_host,
                                user=dbconfig.db_user,
                                passwd=dbconfig.db_password,
-                               db=dbconfig.db_name)
+                               database=dbconfig.db_name)
 
     def get_all_inputs(self):
         connection = self.connect()
         try:
-            query = "SELECT description FROM `%s`.`crimes`;"
+            query = "SELECT description FROM crimes;"
             with connection.cursor() as cursor:
-                cursor.execute(query, (dbconfig.db_name))
+                cursor.execute(query)
                 return cursor.fetchall()
         finally:
             connection.close()
@@ -29,7 +28,7 @@ class DBHelper:
     def add_input(self, data):
         connection = self.connect()
         try:
-            query = "INSERT INTO crimes (description) VALUES(%s);"
+            query = "INSERT INTO crimes (description) VALUES (%s);"
             with connection.cursor() as cursor:
                 cursor.execute(query, data)
                 connection.commit()
@@ -47,7 +46,7 @@ class DBHelper:
             connection.close()
 
     def add_crime(self, category, date, latitude, longitude, description):
-        """add new crime"""
+        """add new crime into our database - table crimes using INSERT statement."""
         connection = self.connect()
         try:
             query = "INSERT INTO crimes (category, date, latitude, longitude, description) \
