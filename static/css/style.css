@@ -34,3 +34,7 @@ input, select, textarea {
     float: right;
     width: 25%;
 }
+
+#error {
+    color: red;
+}

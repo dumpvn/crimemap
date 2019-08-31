@@ -1,6 +1,6 @@
 import os
 
-test = True
+test = False
 
 db_host = os.getenv('MYSQL_DB_HOST', 'localhost')
 db_user = os.getenv('MYSQL_DB_USER', 'root')
